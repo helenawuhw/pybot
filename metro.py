@@ -21,7 +21,6 @@ def timeForNextWestTrain(wmataResponse):
 
   Return the time until the next train leaves Eastwarn (towards Rosslyn / New Carrolton) (in minutes, as a string)
 """
-    
   n_trains = len(wmataResponse['Trains'])
   if n_trains < 1:
     return ''  #returns None when there is no info about trains
