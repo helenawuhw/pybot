@@ -74,10 +74,11 @@ class TestSequenceFunctions(unittest.TestCase):
     def test_timeForNextWestTrain(self):
         metroData = json.loads(self.response)
         self.assertEqual("2", metro.timeForNextWestTrain(metroData))
-
+    
     def test_timeForNextEastTrain(self):
         metroData = json.loads(self.response)
         self.assertEqual("1", metro.timeForNextEastTrain(metroData))
 
 if __name__ == '__main__':
     unittest.main()
+
