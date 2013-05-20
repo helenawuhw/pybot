@@ -21,6 +21,5 @@ class TestSequenceFunctions(unittest.TestCase):
     def test_unordered_timeForNextEastTrain(self):
         self.assertEqual("1", metro.timeForNextEastTrain(self.unorderedMetroData))
 
-
 if __name__ == '__main__':
     unittest.main()
