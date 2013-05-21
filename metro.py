@@ -1,7 +1,11 @@
-
-
 import urllib2
 
+def shouldRespond(text):
+  """
+  Return True if we should response to the message, false otherwise.
+  """
+  pass
+  
 """
   Return the WMATA json response for the Courthouse metro stop
 """

@@ -30,6 +30,30 @@ class TestSequenceFunctions(unittest.TestCase):
       
     def test_test2_timeForNextTrainToL(self):
       self.assertEqual("11", metro.timeForNextTrainToL(self.test2MetroData))
+
+    def test_shouldRespond_empty_string(self):
+      self.assertEquals(False, metro.shouldRespond(''))
+
+    def test_shouldRespond_obot(self):
+      self.assertEquals(False, metro.shouldRespond('obot image me dog laughing'))
+
+    def test_shouldRespond_not_relevant(self):
+      self.assertEquals(False, metro.shouldRespond('here is the ticket in jira'))
+
+    def test_shouldRespond_false(self):
+      self.assertEquals(False, metro.shouldRespond('my favorite command is "obot show me metro"'))      
+
+    def test_shouldRespond_true(self):
+      self.assertTrue(metro.shouldRespond('obot show me metro'))      
+
+    def test_shouldRespond_extra_space_at_end(self):
+      self.assertTrue(metro.shouldRespond('obot show me metro       '))      
+
+    def test_shouldRespond_extra_space_between_words(self):
+      self.assertTrue(metro.shouldRespond('obot    show me     metro'))
+
+    def test_shouldRespond_extra_space_at_beginning(self):
+      self.assertTrue(metro.shouldRespond('      obot show me metro'))
       
       
 if __name__ == '__main__':
