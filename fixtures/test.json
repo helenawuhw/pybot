@@ -1,0 +1,20 @@
+{"Trains":[{"Car":"6","Destination":"NewCrltn","DestinationCode":"D13",
+           "DestinationName":"New Carrollton","Group":"1","Line":"OR",
+           "LocationCode":"K01","LocationName":"Court House","Min":"7"},
+           
+           {"Car":"-","Destination":"Train","DestinationCode":null,
+           "DestinationName":"Train","Group":"2","Line":"--","LocationCode":"K01",
+           "LocationName":"Court House","Min":"9"},
+           
+           {"Car":"6","Destination":"NewCrltn","DestinationCode":"D13",
+           "DestinationName":"New Carrollton","Group":"1","Line":"OR",
+           "LocationCode":"K01","LocationName":"Court House","Min":"20"},
+           
+           {"Car":"-","Destination":"Train","DestinationCode":null,"DestinationName":"Train",
+           "Group":"2","Line":"--","LocationCode":"K01","LocationName":"Court House","Min":"20"},
+           
+           {"Car":"6","Destination":"NewCrltn","DestinationCode":"D13","DestinationName":"New Carrollton",
+           "Group":"1","Line":"OR","LocationCode":"K01","LocationName":"Court House","Min":""},
+           
+           {"Car":"","Destination":"","DestinationCode":null,"DestinationName":"",
+           "Group":"2","Line":"","LocationCode":"K01","LocationName":"Court House","Min":""}]}
