@@ -22,7 +22,7 @@ def time(response, destination):
     if response['Trains'][i]['Destination'] == destination:
         list_indicies.append(i)
   minutes_list = [response['Trains'][n]['Min'] for n in list_indicies if response['Trains'][n]['Min'] != '']
-  if len(minutes_list) > 1:
+  if len(minutes_list) > 0:
     int_list = [int(x) for x in minutes_list]
     return `min(int_list)`
   else:
