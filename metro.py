@@ -7,7 +7,7 @@ import urllib2
 """
 def getJsonForCourthouse():
   apiCall = urllib2.urlopen('http://api.wmata.com/StationPrediction.svc/json/GetPrediction/K01?api_key=ten3y6u8f6qdn5trz7am72jq')
-  return function.read()
+  return apiCall.read()
 
 
 """
@@ -17,7 +17,7 @@ def time(response, destination):
   list_indicies = []
   n_trains = len(response['Trains'])
   if n_trains < 1:
-    return ''  #returns '' when there is no info about trains
+    return None  #returns None when there is no info about trains
   for i in range(n_trains):
     if response['Trains'][i]['Destination'] == destination:
         list_indicies.append(i)
@@ -26,7 +26,7 @@ def time(response, destination):
     int_list = [int(x) for x in minutes_list]
     return `min(int_list)`
   else:
-    return ''
+    return None
 
 
 """
@@ -57,7 +57,7 @@ def timeForNextTrainToL(wmataResponse):
   if time(wmataResponse, "Largo"):
     return time(wmataResponse, "Largo")
   else:
-    return ''
+    return None
   
 
 
