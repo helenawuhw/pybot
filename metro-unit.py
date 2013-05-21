@@ -23,7 +23,7 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual("1", metro.timeForNextTrainToNC(self.unorderedMetroData))
   
     def test_unordered_timeForNextTrainToL(self):
-      self.assertEqual("No trains to Largo", metro.timeForNextTrainToL(self.unorderedMetroData))
+      self.assertEqual("", metro.timeForNextTrainToL(self.unorderedMetroData))
       
     def test_test2_timeForNextTrainToV(self):
       self.assertEqual("2", metro.timeForNextTrainToV(self.test2MetroData))

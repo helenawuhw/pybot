@@ -6,7 +6,7 @@ import urllib2
   Return the WMATA json response for the Courthouse metro stop
 """
 def getJsonForCourthouse():
-  function = urllib2.urlopen('http://api.wmata.com/StationPrediction.svc/json/GetPrediction/K01?api_key=ten3y6u8f6qdn5trz7am72jq')
+  apiCall = urllib2.urlopen('http://api.wmata.com/StationPrediction.svc/json/GetPrediction/K01?api_key=ten3y6u8f6qdn5trz7am72jq')
   return function.read()
 
 
@@ -17,8 +17,8 @@ def time(response, destination):
   list_indicies = []
   n_trains = len(response['Trains'])
   if n_trains < 1:
-    return ''  #returns None when there is no info about trains
-  for i in range(0, n_trains):
+    return ''  #returns '' when there is no info about trains
+  for i in range(n_trains):
     if response['Trains'][i]['Destination'] == destination:
         list_indicies.append(i)
   minutes_list = [response['Trains'][n]['Min'] for n in list_indicies if response['Trains'][n]['Min'] != '']
@@ -51,13 +51,13 @@ def timeForNextTrainToNC(wmataResponse):
   Argument: the return value of getJsonForCourthouse()
 
   Return the time until the next train leaves Eastwarn (towards Rosslyn / Largo Town Center) (in minutes, as a string)
-  if no trains to Largo, return "No trains to Largo"
+  if no trains to Largo, return ''
 """
 def timeForNextTrainToL(wmataResponse):
   if time(wmataResponse, "Largo"):
     return time(wmataResponse, "Largo")
   else:
-    return "No trains to Largo"
+    return ''
   
 
 
