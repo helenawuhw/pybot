@@ -2,9 +2,22 @@ import urllib2
 
 def shouldRespond(text):
   """
-  Return True if we should response to the message, false otherwise.
+  Return True if we should respond to the message, False otherwise.
   """
-  pass
+  obot_place = text.find("obot")
+  show_place = text.find("show")
+  me_place = text.find("me")
+  metro_place = text.find("metro")
+  
+  if (obot_place != -1) and (show_place != -1) and (me_place != -1) and (metro_place != -1):
+    if (text[:obot_place].isspace() == True or len(text[:obot_place]) == 0) and (text[obot_place+4:show_place].isspace() == True) and (text[show_place+4:me_place].isspace() == True) and (text[me_place+2:metro_place].isspace() == True):
+      return True
+    else:
+      return False
+  else:
+    return False
+  
+  
   
 """
   Return the WMATA json response for the Courthouse metro stop

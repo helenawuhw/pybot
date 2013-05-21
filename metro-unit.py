@@ -54,6 +54,9 @@ class TestSequenceFunctions(unittest.TestCase):
 
     def test_shouldRespond_extra_space_at_beginning(self):
       self.assertTrue(metro.shouldRespond('      obot show me metro'))
+    
+    def test_shouldRespond_extra_space_at_beginning(self):
+      self.assertEquals(False, metro.shouldRespond('      obot    / show me metro'))
       
       
 if __name__ == '__main__':
