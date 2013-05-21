@@ -28,7 +28,7 @@ class TestSequenceFunctions(unittest.TestCase):
     def test_test2_timeForNextTrainToV(self):
       self.assertEqual("2", metro.timeForNextTrainToV(self.test2MetroData))
       
-    def test_test2_timeForNextTrainToV(self):
+    def test_test2_timeForNextTrainToNC(self):
       self.assertEqual("1", metro.timeForNextTrainToNC(self.test2MetroData))
       
     def test_test2_timeForNextTrainToL(self):
