@@ -54,10 +54,6 @@ def timeForNextTrainToNC(wmataResponse):
   if no trains to Largo, return ''
 """
 def timeForNextTrainToL(wmataResponse):
-  if time(wmataResponse, "Largo"):
     return time(wmataResponse, "Largo")
-  else:
-    return None
-  
 
 
