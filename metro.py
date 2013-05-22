@@ -1,14 +1,33 @@
 import urllib2
 import re
 
+"""
+  Return the response for the text or None if we don't want to respond.
+
+  Example:
+    handleMessage('I am going to the moon') == None
+
+    handleMessage('obot show me metro') == the response with the metro times
+"""
+def handleMessage(text):
+  pass
+
+"""
+  Return a string describing the time for the next train to a destination
+
+  Example:
+    formatTime('Vienna', '6') == 'The next train to Vienna is in 6 minutes'
+
+    formatTime('Largo', None) == 'There is no scheduled train going to Largo'
+"""
+def formatTime(destination, time):
+  pass
 
 """
   Return True if we should respond to the message, False otherwise.
 """
 def shouldRespond(text):
-  return re.search(r'^obot\s*show\s*me\s*metro', text) is not None
-
-  
+  return re.search(r'^obot\s*show\s*me\s*metro', text) is not None  
   
 """
   Return the WMATA json response for the Courthouse metro stop

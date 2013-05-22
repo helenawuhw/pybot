@@ -57,7 +57,12 @@ class TestSequenceFunctions(unittest.TestCase):
     
     def test_shouldRespond_extra_space_at_beginning(self):
       self.assertEquals(False, metro.shouldRespond('      obot    / show me metro'))
-      
+
+    def test_formatTime(self):
+      self.assertEquals('The next train to Vienna is in 5 minutes', metro.formatTime('Vienna', '5'))
+
+    def test_formatTime_no_train(self):
+      self.assertEquals('There is no schedule train going to Largo', metro.formatTime('Largo', None))
       
 if __name__ == '__main__':
     unittest.main()
