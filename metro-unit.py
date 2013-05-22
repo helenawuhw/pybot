@@ -9,6 +9,17 @@ class TestSequenceFunctions(unittest.TestCase):
       self.unorderedMetroData = json.loads(open('fixtures/unordered.json', 'r').read())
       self.test2MetroData = json.loads(open('fixtures/test2.json', 'r').read())
 
+      # response that includes "min": "ARR"
+      self.arrMetroData = json.loads(open('fixtures/arr.json', 'r').read())
+
+    def test_arr_timeForNextTrainToV(self):
+        self.assertEqual("5", metro.timeForNextTrainToV(self.arrMetroData))
+
+    def test_arr_timeForNextTrainToNC(self):
+        self.assertEqual("3", metro.timeForNextTrainToNC(self.arrMetroData))
+  
+    def test_arr_timeForNextTrainToL(self):
+        self.assertEqual(None, metro.timeForNextTrainToL(self.arrMetroData))
 
     def test_ordered_timeForNextTrainToNC(self):
         self.assertEqual("1", metro.timeForNextTrainToNC(self.orderedMetroData))

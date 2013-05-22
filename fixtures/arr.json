@@ -1,0 +1,7 @@
+{"Trains":[
+    {"Car":"6","Destination":"NewCrltn","DestinationCode":"D13","DestinationName":"New Carrollton","Group":"1","Line":"OR","LocationCode":"K01","LocationName":"Court House","Min":"ARR"},
+    {"Car":"6","Destination":"NewCrltn","DestinationCode":"D13","DestinationName":"New Carrollton","Group":"1","Line":"OR","LocationCode":"K01","LocationName":"Court House","Min":"3"},
+    {"Car":"6","Destination":"Vienna","DestinationCode":"K08","DestinationName":"Vienna","Group":"2","Line":"OR","LocationCode":"K01","LocationName":"Court House","Min":"BRD"},
+    {"Car":"6","Destination":"Vienna","DestinationCode":"K08","DestinationName":"Vienna","Group":"2","Line":"OR","LocationCode":"K01","LocationName":"Court House","Min":"5"}
+  ]
+}
