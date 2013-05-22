@@ -1,5 +1,6 @@
 import urllib2
 import re
+import json
 
 """
   Return the response for the text or None if we don't want to respond.
@@ -46,7 +47,7 @@ def shouldRespond(text):
 """
 def getJsonForCourthouse():
   apiCall = urllib2.urlopen('http://api.wmata.com/StationPrediction.svc/json/GetPrediction/K01?api_key=ten3y6u8f6qdn5trz7am72jq')
-  return apiCall.read()
+  return json.loads(apiCall.read())
 
 
 """

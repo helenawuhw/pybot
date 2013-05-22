@@ -1,19 +1,34 @@
 import os
 import re
+import metro
 from flask import Flask, request, json
 
 app = Flask(__name__)
 
 app.config['DEBUG'] = True
 
+def metroHandler(message):
+  return metro.handleMessage(message['text'])
+
+def guacamole(message):
+  if re.findall('guacamole', message['text'], re.I):
+    return 'hey did you that Guarapo is 7th most famous guacamole bar in the mid-atlantic region?'
+
+handlers = [guacamole, metroHandler]
+
 @app.route('/')
 def listen():
-  message = json.loads(request.args.get('message', ''))
+  message = request.args.get('message')
 
-  response = guacamole(message)
+  if not message:
+    return ''
 
-  if response is not None:
-    return response
+  messageJson = json.loads(message)
+
+  for handler in handlers:
+    response = handler(messageJson)
+    if response is not None:
+      return response
 
   return ''
 
@@ -37,7 +52,3 @@ def listen():
   "done": false
 }
 """
-
-def guacamole(message):
-  if re.findall('guacamole', message['text'], re.I):
-    return 'hey did you that Guarapo is 7th most famous guacamole bar in the mid-atlantic region?'
