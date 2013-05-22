@@ -11,9 +11,10 @@ import re
 """
 def handleMessage(text):
   if shouldRespond(text):
-    resp =    formatTime("Vienna", timeForNextTrainToV(wmataResponse)) + \
-              formatTime("New Carrolton", timeForNextTrainToNC(wmataResponse)) + \
-              formatTime("Largo", timeForNextTrainToL(wmataResponse))
+    w = getJsonForCourthouse()
+    resp =    formatTime("Vienna", timeForNextTrainToV(w)) + \
+              formatTime("New Carrolton", timeForNextTrainToNC(w)) + \
+              formatTime("Largo", timeForNextTrainToL(w))
     return resp
   else:
     return None
