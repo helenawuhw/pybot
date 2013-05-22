@@ -5,7 +5,7 @@
   Return True if we should respond to the message, False otherwise.
 """
 def shouldRespond(text):
-    return re.findall('chuck norris', message['text'], re.I) is not None #PERGUNTAR
+    return re.findall('chuck norris', text, re.I) is not None #PERGUNTAR
 
 
 
