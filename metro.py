@@ -10,7 +10,14 @@ import re
     handleMessage('obot show me metro') == the response with the metro times
 """
 def handleMessage(text):
-  pass
+  if shouldRespond(text):
+    resp =    formatTime("Vienna", timeForNextTrainToV(wmataResponse)) + \
+              formatTime("New Carrolton", timeForNextTrainToNC(wmataResponse)) + \
+              formatTime("Largo", timeForNextTrainToL(wmataResponse))
+    return resp
+  else:
+    return None
+
 
 """
   Return a string describing the time for the next train to a destination
@@ -21,7 +28,11 @@ def handleMessage(text):
     formatTime('Largo', None) == 'There is no scheduled train going to Largo'
 """
 def formatTime(destination, time):
-  pass
+  if time == None:
+    return "There is no scheduled train going to " + destination
+  else:
+    return "The next train to " + destination + " is in " + time + " minutes"
+  
 
 """
   Return True if we should respond to the message, False otherwise.
