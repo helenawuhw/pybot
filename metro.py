@@ -13,8 +13,8 @@ import json
 def handleMessage(text):
   if shouldRespond(text):
     w = getJsonForCourthouse()
-    resp =    formatTime("Vienna", timeForNextTrainToV(w)) + \
-              formatTime("New Carrolton", timeForNextTrainToNC(w)) + \
+    resp =    formatTime("Vienna", timeForNextTrainToV(w)) + '\n' + \
+              formatTime("New Carrolton", timeForNextTrainToNC(w)) + '\n' + \
               formatTime("Largo", timeForNextTrainToL(w))
     return resp
   else:
@@ -61,7 +61,7 @@ def time(response, destination):
   for i in range(n_trains):
     if response['Trains'][i]['Destination'] == destination:
         list_indicies.append(i)
-  minutes_list = [response['Trains'][n]['Min'] for n in list_indicies if response['Trains'][n]['Min'] != '']
+  minutes_list = [response['Trains'][n]['Min'] for n in list_indicies if response['Trains'][n]['Min'].isdigit()]
   if len(minutes_list) > 0:
     int_list = [int(x) for x in minutes_list]
     return `min(int_list)`
