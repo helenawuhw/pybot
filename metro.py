@@ -1,10 +1,14 @@
 import urllib2
+import re
 
+
+"""
+  Return True if we should respond to the message, False otherwise.
+"""
 def shouldRespond(text):
-  """
-  Return True if we should response to the message, false otherwise.
-  """
-  pass
+  return re.search(r'^obot\s*show\s*me\s*metro', text) is not None
+
+  
   
 """
   Return the WMATA json response for the Courthouse metro stop
