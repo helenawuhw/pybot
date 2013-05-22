@@ -28,7 +28,7 @@ def handleMessage(text):
     formatTime('Largo', None) == 'There is no scheduled train going to Largo'
 """
 def formatTime(destination, time):
-  if time == None:
+  if time is None:
     return "There is no scheduled train going to " + destination
   else:
     return "The next train to " + destination + " is in " + time + " minutes"
