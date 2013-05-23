@@ -14,16 +14,13 @@ def getJsonForJokes():
 """
   Returns the joke as a string without the parentheses 
 """
-def getJoke():
-  response = getJsonForJokes()
-  start_index = response.find('"joke":')
-  end_index = response.find('.", "categories": ["')
-  return response[start_index + 9: end_index + 2]
+def getJoke(response):
+  return response["value"]['joke']
 
 
 """
   Returns the joke as a string without the parentheses 
 """
-def cnJokes(text):
+def handleMessage(text):
   if re.findall('chuck norris', text, re.I):
-    return getJoke()
+    return getJoke(getJsonForJokes())

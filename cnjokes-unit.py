@@ -1,6 +1,8 @@
 import unittest
 import cnjokes
-import json
+import json    #def test_cnJokes(self):
+    #    self.assertEqual("Chuck Norris knows the value of NULL, and he can sort by it too.", cnjokes.cnJokes("chuck norris"))
+
 
 class TestSequenceFunctions(unittest.TestCase):
 
@@ -9,14 +11,7 @@ class TestSequenceFunctions(unittest.TestCase):
 
 
     def test_cnJokes(self):
-        self.assertEqual(None, cnjokes.cnJokes(''))
-
-    def test_cnJokes(self):
-        self.assertEqual("Chuck Norris knows the value of NULL, and he can sort by it too.", cnjokes.cnJokes("chuck norris"))
-
-
-
-
+        self.assertEqual("Chuck Norris knows the value of NULL, and he can sort by it too.", cnjokes.getJoke(self.jokes))
 
 
 

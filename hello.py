@@ -11,13 +11,13 @@ def metroHandler(message):
   return metro.handleMessage(message['text'])
 
 def jokesHandler(message):
-  return metro.handleMessage(message['text'])
+  return cnjokes.handleMessage(message['text'])
 
 def guacamole(message):
   if re.findall('guacamole', message['text'], re.I):
     return 'hey did you that Guarapo is 7th most famous guacamole bar in the mid-atlantic region?'
 
-handlers = [guacamole, metroHandler]
+handlers = [guacamole, metroHandler, jokesHandler]
 
 @app.route('/')
 def listen():
