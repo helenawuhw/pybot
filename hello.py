@@ -1,6 +1,7 @@
 import os
 import re
 import metro
+import cnjokes
 from flask import Flask, request, json
 
 app = Flask(__name__)
