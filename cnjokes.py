@@ -1,12 +1,6 @@
-
-
-
-"""
-  Return True if we should respond to the message, False otherwise.
-"""
-def shouldRespond(text):
-    return re.findall('chuck norris', text, re.I) is not None #PERGUNTAR
-
+import urllib2
+import re
+import json
 
 
 """
@@ -14,11 +8,22 @@ def shouldRespond(text):
 """
 def getJsonForJokes():
   apiCall = urllib2.urlopen('http://api.icndb.com/jokes/random/')
-  return apiCall.read()
+  return json.loads(apiCall.read())
 
 
+"""
+  Returns the joke as a string without the parentheses 
+"""
+def getJoke():
+  response = getJsonForJokes()
+  start_index = response.find('"joke":')
+  end_index = response.find('.", "categories": ["')
+  return response[start_index + 9: end_index + 2]
 
 
+"""
+  Returns the joke as a string without the parentheses 
+"""
 def cnJokes(text):
-  if re.findall('chuck norris', message['text'], re.I):
-    return 'hey did you that Guarapo is 7th most famous guacamole bar in the mid-atlantic region?'
+  if re.findall('chuck norris', text, re.I):
+    return getJoke()
