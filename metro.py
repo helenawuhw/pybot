@@ -25,15 +25,19 @@ def handleMessage(text):
   Return a string describing the time for the next train to a destination
 
   Example:
-    formatTime('Vienna', '6') == 'The next train to Vienna is in 6 minutes'
+    formatTime('Vienna', '[6]') == 'The next train to Vienna is in 6 minutes'
+
+    formatTime('New Carrolton', '[1,10]') == 'The next trains to New Carrolton are 1 and 10 minutes minutes'
 
     formatTime('Largo', None) == 'There is no scheduled train going to Largo'
 """
-def formatTime(destination, time):
-  if time is None:
+def formatTime(destination, times):
+  if times is None:
     return "There is no scheduled train going to " + destination
+  if len(times) == 1:
+    return "The next train to " + destination + " is in " + `times[0]` + " minutes"
   else:
-    return "The next train to " + destination + " is in " + time + " minutes"
+    return "The next trains to " + destination + " are in " + `times[0]` + " and " + `times[1]` + " minutes"
   
 
 """
@@ -54,17 +58,20 @@ def getJsonForCourthouse():
   Return the minimum time for the next train to destination (Vienna, New Carrolton or Largo) to arrive in a string
 """
 def time(response, destination):
-  list_indicies = []
+  indicies = []
   n_trains = len(response['Trains'])
   if n_trains < 1:
     return None  #returns None when there is no info about trains
   for i in range(n_trains):
     if response['Trains'][i]['Destination'] == destination:
-        list_indicies.append(i)
-  minutes_list = [response['Trains'][n]['Min'] for n in list_indicies if response['Trains'][n]['Min'].isdigit()]
-  if len(minutes_list) > 0:
-    int_list = [int(x) for x in minutes_list]
-    return `min(int_list)`
+        indicies.append(i)
+  minutes_list = [response['Trains'][n]['Min'] for n in indicies if response['Trains'][n]['Min'].isdigit()]
+  ints = [int(x) for x in minutes_list]
+  if len(minutes_list) == 1:
+    return [min(ints)]
+  if len(minutes_list) > 1:
+    ints.sort()
+    return ints[:2]
   else:
     return None
 

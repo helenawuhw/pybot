@@ -13,34 +13,34 @@ class TestSequenceFunctions(unittest.TestCase):
       self.arrMetroData = json.loads(open('fixtures/arr.json', 'r').read())
 
     def test_arr_timeForNextTrainToV(self):
-        self.assertEqual("5", metro.timeForNextTrainToV(self.arrMetroData))
+        self.assertEqual([5], metro.timeForNextTrainToV(self.arrMetroData))
 
     def test_arr_timeForNextTrainToNC(self):
-        self.assertEqual("3", metro.timeForNextTrainToNC(self.arrMetroData))
+        self.assertEqual([3], metro.timeForNextTrainToNC(self.arrMetroData))
   
     def test_arr_timeForNextTrainToL(self):
         self.assertEqual(None, metro.timeForNextTrainToL(self.arrMetroData))
 
     def test_ordered_timeForNextTrainToNC(self):
-        self.assertEqual("1", metro.timeForNextTrainToNC(self.orderedMetroData))
+        self.assertEqual([1,8], metro.timeForNextTrainToNC(self.orderedMetroData))
 
     def test_unordered_timeForNextTrainToV(self):
-        self.assertEqual("2", metro.timeForNextTrainToV(self.unorderedMetroData))
+        self.assertEqual([2,9], metro.timeForNextTrainToV(self.unorderedMetroData))
 
     def test_unordered_timeForNextTrainToNC(self):
-        self.assertEqual("1", metro.timeForNextTrainToNC(self.unorderedMetroData))
+        self.assertEqual([1,8], metro.timeForNextTrainToNC(self.unorderedMetroData))
   
     def test_unordered_timeForNextTrainToL(self):
       self.assertEqual(None, metro.timeForNextTrainToL(self.unorderedMetroData))
       
     def test_test2_timeForNextTrainToV(self):
-      self.assertEqual("2", metro.timeForNextTrainToV(self.test2MetroData))
+      self.assertEqual([2,11], metro.timeForNextTrainToV(self.test2MetroData))
       
     def test_test2_timeForNextTrainToNC(self):
-      self.assertEqual("1", metro.timeForNextTrainToNC(self.test2MetroData))
+      self.assertEqual([1,8], metro.timeForNextTrainToNC(self.test2MetroData))
       
     def test_test2_timeForNextTrainToL(self):
-      self.assertEqual("11", metro.timeForNextTrainToL(self.test2MetroData))
+      self.assertEqual([11], metro.timeForNextTrainToL(self.test2MetroData))
 
     def test_shouldRespond_empty_string(self):
       self.assertEquals(False, metro.shouldRespond(''))
@@ -70,7 +70,7 @@ class TestSequenceFunctions(unittest.TestCase):
       self.assertEquals(False, metro.shouldRespond('      obot    / show me metro'))
 
     def test_formatTime(self):
-      self.assertEquals('The next train to Vienna is in 5 minutes', metro.formatTime('Vienna', '5'))
+      self.assertEquals('The next train to Vienna is in 5 minutes', metro.formatTime('Vienna', [5]))
 
     def test_formatTime_no_train(self):
       self.assertEquals('There is no scheduled train going to Largo', metro.formatTime('Largo', None))
