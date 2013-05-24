@@ -12,9 +12,8 @@ Custom photo bombing via the flickr api
   Return a response for `text` if we want to respond; otherwise None
 """
 def handleMessage(text):
-  s = shouldRespond(text)
-  if s != (None, None):
-    topic, number = s
+  topic, number = shouldRespond(text)
+  if (topic, number) != (None, None):
     list_ids = getPhotoIdsForTopic(topic)
     return ','.join([getPhotoUrlForId(photo_id) for photo_id in list_ids])
 
@@ -43,18 +42,10 @@ DEFAULT_BOMB_TOPIC = 'kenny loggins'
 def shouldRespond(text):
   match = re.search(r'obot ((\w* )*)bomb( (\d*))?', text)
   if match is not None:
-    topic = match.group(1)
-    number = match.group(3)
-    if number is None:
-      return topic.strip(), DEFAULT_BOMB_COUNT
-    if topic.strip() == '':
-      return DEFAULT_BOMB_TOPIC, number.strip()
-    if topic.strip() == '' and number is None:
-      return DEFAULT_BOMB_TOPIC, DEFAULT_BOMB_COUNT
-    else:
-      return topic.strip(), number.strip()
-  else:
-    return None, None
+    topic = match.group(1).strip() or DEFAULT_BOMB_TOPIC
+    number = (match.group(3) or '').strip() or DEFAULT_BOMB_COUNT
+    return topic, number
+  return None, None 
 
 
 """
@@ -68,16 +59,25 @@ def getPhotoIdsForTopic(topic):
   Call the flickr API and return the json response for a photo search on a topic
 """
 def getPhotoIdJsonForTopic(topic):
+  a = 'http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8ac641379dc965b3ffb0eb1ed4bf055a&tags='
+  b = '&per_page='
+  c = '&format=json&nojsoncallback=1'
   urled_topic = urllib2.quote(topic)
-  apiCall = urllib2.urlopen('http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8ac641379dc965b3ffb0eb1ed4bf055a&tags=' + urled_topic + '&per_page=' + `DEFAULT_BOMB_COUNT` +'&format=json&nojsoncallback=1')
+  complete_url = a + urled_topic + b + `DEFAULT_BOMB_COUNT` + c
+  apiCall = urllib2.urlopen('complete_url')
   return json.loads(apiCall.read())
 
+'foo {0} bar {1}'.format('asdf', 'odp')
+'foo asdf bar odp'
 
 """
   Parse the json response to determine the list of ids for the photos
 """
 def parsePhotoIdsFromJsonResponse(response):
-  return [photo['id'] for photo in response['photos']['photo']]
+  if response['photos']['photo'] == []:
+    return None
+  else:
+    return [photo['id'] for photo in response['photos']['photo']]
 
 
 """
@@ -91,7 +91,10 @@ def getPhotoUrlForId(id_number):
   Call the flickr API to get the json photo url response for a specific photo id
 """
 def getPhotoUrlJsonForId(id_number):
-  apiCall = urllib2.urlopen('http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=8ac641379dc965b3ffb0eb1ed4bf055a&photo_id=' + id_number + '&format=json&nojsoncallback=1')
+  a = 'http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=8ac641379dc965b3ffb0eb1ed4bf055a&photo_id='
+  b = '&format=json&nojsoncallback=1'
+  complete_url = a + id_number + b
+  apiCall = urllib2.urlopen(complete_url)
   return json.loads(apiCall.read())
 
 
