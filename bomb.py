@@ -15,7 +15,7 @@ def handleMessage(text):
   topic, number = shouldRespond(text)
   if (topic, number) != (None, None):
     list_ids = getPhotoIdsForTopic(topic)
-    return ','.join([getPhotoUrlForId(photo_id) for photo_id in list_ids])
+    return [getPhotoUrlForId(photo_id) for photo_id in list_ids]
 
 
 """
