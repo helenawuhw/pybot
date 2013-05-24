@@ -43,14 +43,7 @@ def shouldRespond(text):
   match = re.search(r'obot ((\w* )*)bomb( (\d*))?', text)
   if match is not None:
     topic = match.group(1).strip() or DEFAULT_BOMB_TOPIC
-    # if int((match.group(3) or '').strip() is not None: # will it ever get to ''.strip() isnt that None?
-    #  number = int(match.group(3))
-    # else:
-    #  number = DEFAULT_BOMB_COUNT
-      
-    #number = int(match.group(3)) or DEFAULT_BOMB_COUNT
-    number = int((match.group(3) or '').strip() or DEFAULT_BOMB_COUNT)    #  number = int(match.group(3))
-    
+    number = int((match.group(3) or '').strip() or DEFAULT_BOMB_COUNT)
     return topic, number
   return None, None
 
