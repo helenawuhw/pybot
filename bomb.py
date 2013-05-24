@@ -63,7 +63,7 @@ def getPhotoIdJsonForTopic(topic, number):
   b = '&per_page='
   c = '&format=json&nojsoncallback=1'
   urled_topic = urllib2.quote(topic)
-  complete_url = a + urled_topic + b + number + c
+  complete_url = a + urled_topic + b + `number` + c
   apiCall = urllib2.urlopen(complete_url)
   return json.loads(apiCall.read())
 
