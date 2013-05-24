@@ -67,8 +67,6 @@ def getPhotoIdJsonForTopic(topic):
   apiCall = urllib2.urlopen('complete_url')
   return json.loads(apiCall.read())
 
-'foo {0} bar {1}'.format('asdf', 'odp')
-'foo asdf bar odp'
 
 """
   Parse the json response to determine the list of ids for the photos
