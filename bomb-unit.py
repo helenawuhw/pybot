@@ -15,16 +15,16 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEquals((None, None), bomb.shouldRespond('obot is going to the moon'))
 
     def test_shouldRespond_noTopic(self):
-        self.assertEquals((bomb.DEFAULT_BOMB_TOPIC, "10"), bomb.shouldRespond('obot bomb 10'))
+        self.assertEquals((bomb.DEFAULT_BOMB_TOPIC, 10), bomb.shouldRespond('obot bomb 10'))
 
     def test_shouldRespond_noCount(self):
         self.assertEquals(('dangerzone', bomb.DEFAULT_BOMB_COUNT), bomb.shouldRespond('obot dangerzone bomb'))
 
     def test_shouldRespond_countAndTopic(self):
-        self.assertEquals(('loggins', "8"), bomb.shouldRespond('obot loggins bomb 8'))
+        self.assertEquals(('loggins', 8), bomb.shouldRespond('obot loggins bomb 8'))
 
     def test_shouldRespond_topicWithSpaces(self):
-        self.assertEquals(('danger zone', "8"), bomb.shouldRespond('obot danger zone bomb 8'))
+        self.assertEquals(('danger zone', 8), bomb.shouldRespond('obot danger zone bomb 8'))
 
     def test_parsePhotoIdsFromJsonResponse(self):
         self.assertEquals(
