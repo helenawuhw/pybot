@@ -9,14 +9,17 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 
 def metroHandler(message):
-  return metro.handleMessage(message['text'])
+  return [metro.handleMessage(message['text'])]
 
 def jokesHandler(message):
-  return cnjokes.handleMessage(message['text'])
+  return [cnjokes.handleMessage(message['text'])]
 
 def guacamole(message):
   if re.findall('guacamole', message['text'], re.I):
-    return 'hey did you that Guarapo is 7th most famous guacamole bar in the mid-atlantic region?'
+    return [
+      'hey did you that Guarapo is 7th most famous guacamole bar in the mid-atlantic region?',
+      "better than Jerry's for sure"
+    ]
 
 handlers = [guacamole, metroHandler, jokesHandler]
 
@@ -25,14 +28,14 @@ def listen():
   message = request.args.get('message')
 
   if not message:
-    return ''
+    return 'specify ?message=messageJson to get a response'
 
   messageJson = json.loads(message)
 
   for handler in handlers:
     response = handler(messageJson)
     if response is not None:
-      return response
+      return json.dumps({'messages': response})
 
   return ''
 
