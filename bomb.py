@@ -59,7 +59,7 @@ def getPhotoIdsForTopic(topic):
   Call the flickr API and return the json response for a photo search on a topic
 """
 def getPhotoIdJsonForTopic(topic):
-  a = 'http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8ac641379dc965b3ffb0eb1ed4bf055a&tag_mode='
+  a = 'http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8ac641379dc965b3ffb0eb1ed4bf055a&tags='
   b = '&per_page='
   c = '&format=json&nojsoncallback=1'
   urled_topic = urllib2.quote(topic)
