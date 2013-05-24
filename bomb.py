@@ -14,7 +14,7 @@ Custom photo bombing via the flickr api
 def handleMessage(text):
   topic, number = shouldRespond(text)
   if (topic, number) != (None, None):
-    list_ids = getPhotoIdsForTopic(topic)
+    list_ids = getPhotoIdsForTopic(topic, number)
     return [getPhotoUrlForId(photo_id) for photo_id in list_ids]
 
 
@@ -51,19 +51,19 @@ def shouldRespond(text):
 """
   Call the flickr API and return a list of photo ids corresponding to a specific topic
 """
-def getPhotoIdsForTopic(topic):
-  return parsePhotoIdsFromJsonResponse(getPhotoIdJsonForTopic(topic))
+def getPhotoIdsForTopic(topic, number):
+  return parsePhotoIdsFromJsonResponse(getPhotoIdJsonForTopic(topic,number))
 
 
 """
   Call the flickr API and return the json response for a photo search on a topic
 """
-def getPhotoIdJsonForTopic(topic):
+def getPhotoIdJsonForTopic(topic, number):
   a = 'http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8ac641379dc965b3ffb0eb1ed4bf055a&tags='
   b = '&per_page='
   c = '&format=json&nojsoncallback=1'
   urled_topic = urllib2.quote(topic)
-  complete_url = a + urled_topic + b + `DEFAULT_BOMB_COUNT` + c
+  complete_url = a + urled_topic + b + number + c
   apiCall = urllib2.urlopen(complete_url)
   return json.loads(apiCall.read())
 
