@@ -72,7 +72,7 @@ def getPhotoIdJsonForTopic(topic):
   Parse the json response to determine the list of ids for the photos
 """
 def parsePhotoIdsFromJsonResponse(response):
-  if response['photos']['photo'] == []:
+  if not response['photos']['photo']:
     return None
   else:
     return [photo['id'] for photo in response['photos']['photo']]
