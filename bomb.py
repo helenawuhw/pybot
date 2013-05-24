@@ -15,6 +15,8 @@ def handleMessage(text):
   topic, number = shouldRespond(text)
   if (topic, number) != (None, None):
     list_ids = getPhotoIdsForTopic(topic, number)
+    if list_ids is None:
+      return "Couldn't find anything to bomb :("
     return [getPhotoUrlForId(photo_id) for photo_id in list_ids]
 
 
