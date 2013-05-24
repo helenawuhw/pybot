@@ -69,7 +69,7 @@ def getPhotoIdsForTopic(topic):
 """
 def getPhotoIdJsonForTopic(topic):
   urled_topic = urllib2.quote(topic)
-  apiCall = urllib2.urlopen('http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8ac641379dc965b3ffb0eb1ed4bf055a&tags=' + urled_topic + '&format=json&nojsoncallback=1')
+  apiCall = urllib2.urlopen('http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8ac641379dc965b3ffb0eb1ed4bf055a&tags=' + urled_topic + '&per_page=' + `DEFAULT_BOMB_COUNT` +'&format=json&nojsoncallback=1')
   return json.loads(apiCall.read())
 
 
